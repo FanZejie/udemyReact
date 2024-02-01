@@ -45,3 +45,12 @@ const [gameTurn,setGameTurn] = useState([])
 ```
 
 了解到引用值、数组的状态提升
+
+
+
+状态使用，当他是数组是，一定要深拷贝，像这种二维数组，要深拷贝到它里面的每一个数组
+
+```
+  let gameBoard = [...initialGameBoard.map(array => [...array])];
+```
+
