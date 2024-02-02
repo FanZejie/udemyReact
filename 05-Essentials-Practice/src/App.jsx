@@ -9,11 +9,14 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
+
+  const inputIsValid = userInput.duration >= 1
+
   function handleChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
       return {
         ...prevUserInput,
-        [inputIdentifier]: newValue,
+        [inputIdentifier]: +newValue, //把他转换成number
       };
     });
   }
@@ -21,7 +24,8 @@ function App() {
     <>
       <Header />
       <UserInput onChange={handleChange} userInput={userInput}/>
-      <Results input={userInput}/>
+      {!inputIsValid && <p>Please enter a value greater than 0</p>}
+      {inputIsValid && <Results input={userInput}/>}
     </>
   );
 }
