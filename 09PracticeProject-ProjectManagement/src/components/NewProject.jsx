@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import Input from "./Input";
 import Modal from "./Model";
-export default function NewProject({ onAdd }) {
-    const modal = useRef()
+export default function NewProject({ onAdd, onCancle }) {
+  const modal = useRef();
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
@@ -19,7 +19,7 @@ export default function NewProject({ onAdd }) {
       enteredDueDate === ""
     ) {
       //展示错误界面
-      modal.current.open()
+      modal.current.open();
       return;
     }
 
@@ -32,14 +32,18 @@ export default function NewProject({ onAdd }) {
   return (
     <>
       <Modal ref={modal} buttonCaption="Close">
-        <h2>Invalid Input</h2>
-        <p>you forgot to enter a value.</p>
-        <p>please make sure you provide a valid value for every input field.</p>
+        <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
+        <p className="text-stone-600 mb-4">you forgot to enter a value.</p>
+        <p className="text-stone-600 mb-4">
+          please make sure you provide a valid value for every input field.
+        </p>
       </Modal>
       <div className="w-[35rem]">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
-            <button className="text-stone-800 hover:text-stone-950">
+            <button
+              className="text-stone-800 hover:text-stone-950"
+              onClick={onCancle}>
               Cancel
             </button>
           </li>
